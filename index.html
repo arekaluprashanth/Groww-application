@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Groww Application — Simulated Multi-Asset Trading & Strategy Learning</title>
+  <meta name="description" content="Groww Application helps learners practice simulated trading across stocks, bonds, and crypto with real-time analytics, indicator customization, and strategy testing." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --color-primary:#2563eb;--color-primary-light:#60a5fa;--color-primary-dark:#1d4ed8;--color-secondary:#0ea5e9;--color-accent:#6366f1;
+      --color-bg-default:#ffffff;--color-bg-dark:#0f172a;--color-bg-muted:#f1f5f9;--color-bg-accent:#eef2ff;
+      --color-text-primary:#0f172a;--color-text-secondary:#475569;--color-text-inverse:#f8fafc;--color-border:#cbd5e1;
+      --font-heading:"Space Grotesk",sans-serif;--font-body:"Inter",sans-serif;
+      --gradient-hero:linear-gradient(135deg,var(--color-primary),var(--color-accent));--gradient-cta:linear-gradient(90deg,var(--color-primary-dark),var(--color-secondary));
+      --shadow-card:0 8px 24px rgba(15,23,42,0.08);--shadow-card-hover:0 16px 40px rgba(15,23,42,0.14);
+      --radius-card:18px;--radius-button:12px;--button-padding:0.75rem 1.2rem;--section-py:5rem;--section-py-lg:7rem;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-body);color:var(--color-text-primary);background:var(--color-bg-default)}
+    header{transition:background .3s ease,box-shadow .3s ease,border-color .3s ease;border-bottom:1px solid transparent}
+    header.scrolled{background:var(--color-bg-default);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-card)}
+    .btn{padding:var(--button-padding);border-radius:var(--radius-button);transition:.2s ease;display:inline-flex;justify-content:center;align-items:center;font-family:var(--font-body);font-weight:600}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+    .card{border-radius:var(--radius-card);box-shadow:var(--shadow-card);transition:.2s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-card-hover)}
+    .animate-in{animation:fadeSlideIn .6s ease forwards}
+    .animate-in:nth-child(2){animation-delay:.1s}.animate-in:nth-child(3){animation-delay:.2s}.animate-in:nth-child(4){animation-delay:.3s}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .avatar{width:3rem;height:3rem;border-radius:50%;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-accent)}
+  </style>
+</head>
+<body>
+  <header class="sticky top-0 z-50 py-3" style="background: color-mix(in srgb, var(--color-bg-default) 85%, transparent); backdrop-filter: blur(15px);">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
+      <a href="#" style="font-family:var(--font-heading);color:var(--color-primary);font-weight:800;letter-spacing:-0.02em;">groww application</a>
+      <button id="menuBtn" class="md:hidden" aria-label="Toggle menu" style="color:var(--color-text-primary);font-family:var(--font-body);">☰</button>
+      <nav id="navMenu" class="hidden md:flex items-center gap-6">
+        <a href="#features" style="color:var(--color-text-primary);font-family:var(--font-body);">Features</a>
+        <a href="#testimonials" style="color:var(--color-text-primary);font-family:var(--font-body);">Learner Stories</a>
+        <a href="#contact" style="color:var(--color-text-primary);font-family:var(--font-body);">Contact</a>
+        <a href="#contact" class="btn" style="align-self:center;background:var(--color-primary);color:var(--color-text-inverse);padding:0.5rem 1rem;border-radius:var(--radius-button);">Start Simulating</a>
+      </nav>
+    </div>
+    <nav id="mobileNav" class="hidden md:hidden px-4 pb-3">
+      <div class="flex flex-col gap-2">
+        <a href="#features" class="btn w-full" style="background:var(--color-bg-muted);color:var(--color-text-primary);padding:var(--button-padding);border-radius:var(--radius-button);">Features</a>
+        <a href="#testimonials" class="btn w-full" style="background:var(--color-bg-muted);color:var(--color-text-primary);padding:var(--button-padding);border-radius:var(--radius-button);">Learner Stories</a>
+        <a href="#contact" class="btn w-full" style="background:var(--color-primary);color:var(--color-text-inverse);padding:var(--button-padding);border-radius:var(--radius-button);">Start Simulating</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero pt-24 py-12 md:py-20" style="background:var(--gradient-hero);">
+      <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
+        <div class="order-1">
+          <span class="inline-block mb-4" style="background:var(--color-bg-default);color:var(--color-primary);padding:.3rem .8rem;border-radius:999px;font-family:var(--font-body);font-weight:600;">Financial Education Platform</span>
+          <h1 class="text-3xl md:text-5xl lg:text-7xl" style="font-family:var(--font-heading);font-weight:800;line-height:1.08;letter-spacing:-0.03em;color:var(--color-text-inverse);">Trade smarter.<br/>Learn faster.<br/>Risk nothing.</h1>
+          <p class="mt-6 text-base md:text-lg" style="font-family:var(--font-body);color:var(--color-text-inverse);line-height:1.7;">Practice stocks, bonds, and crypto with live simulated markets, build indicator-based strategies, and instantly see portfolio P/L and analytics update in real time.</p>
+          <div class="mt-8 flex flex-col md:flex-row gap-3 md:gap-4">
+            <a href="#contact" class="btn w-full md:w-auto" style="background:var(--color-bg-default);color:var(--color-primary);padding:var(--button-padding);border-radius:var(--radius-button);">Create Free Account</a>
+            <a href="#features" class="btn w-full md:w-auto" style="border:2px solid var(--color-text-inverse);color:var(--color-text-inverse);padding:var(--button-padding);border-radius:var(--radius-button);">Explore Features</a>
+          </div>
+        </div>
+        <div class="order-2">
+          <div class="p-3 md:p-4" style="background:rgba(15,23,42,0.45);border:1px solid rgba(248,250,252,0.2);border-radius:var(--radius-card);">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1080&fit=crop&q=80" alt="Analytics dashboard on trading screen" class="w-full max-w-full" style="border-radius:16px;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features py-12 md:py-20" style="background:var(--color-bg-muted);">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <h2 class="text-3xl md:text-5xl mb-4" style="font-family:var(--font-heading);font-weight:800;line-height:1.1;letter-spacing:-0.02em;color:var(--color-text-primary);">Built for simulated execution and deep strategy learning</h2>
+        <p class="max-w-3xl mb-10" style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Everything from multi-asset charting to pattern recognition is connected, so users can test, refine, and understand decisions with confidence.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
+            <h3 class="text-xl mb-3" style="font-family:var(--font-heading);font-weight:700;color:var(--color-text-primary);">Multi-Asset Comparison</h3>
+            <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Track stocks, bonds, and crypto in one synced workspace with overlay comparison and responsive chart controls.</p>
+          </article>
+          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
+            <h3 class="text-xl mb-3" style="font-family:var(--font-heading);font-weight:700;color:var(--color-text-primary);">Custom Indicators</h3>
+            <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Configure Bollinger Bands, moving averages, RSI, and volatility metrics with user-defined parameters.</p>
+          </article>
+          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
+            <h3 class="text-xl mb-3" style="font-family:var(--font-heading);font-weight:700;color:var(--color-text-primary);">Strategy Rules Engine</h3>
+            <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Create simple buy/sell logic, run scenarios against simulated conditions, and inspect execution outcomes instantly.</p>
+          </article>
+          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
+            <h3 class="text-xl mb-3" style="font-family:var(--font-heading);font-weight:700;color:var(--color-text-primary);">Live Portfolio Feedback</h3>
+            <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">See P/L shifts, transaction costs, and historical trade logs update as you simulate every decision.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials py-12 md:py-20" style="background:var(--color-bg-default);">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <p class="text-7xl md:text-8xl mb-4" style="font-family:var(--font-heading);font-weight:800;line-height:1;color:var(--color-primary);">98%</p>
+        <h2 class="text-3xl md:text-5xl mb-10" style="font-family:var(--font-heading);font-weight:800;line-height:1.1;color:var(--color-text-primary);">of active learners report better trading confidence</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-muted);border:1px solid var(--color-border);">
+            <p class="mb-6" style="font-family:var(--font-body);color:var(--color-text-primary);font-style:italic;line-height:1.7;">“I finally understood how moving averages and RSI work together because I could test rules without risking money.”</p>
+            <div class="flex items-center gap-3">
+              <div class="avatar shrink-0" style="background:var(--color-primary);color:var(--color-text-inverse);">AK</div>
+              <div><p style="font-family:var(--font-body);font-weight:600;color:var(--color-text-primary);">Ananya K.</p><p style="font-family:var(--font-body);color:var(--color-text-secondary);">Finance Student</p></div>
+            </div>
+          </article>
+          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-muted);border:1px solid var(--color-border);">
+            <p class="mb-6" style="font-family:var(--font-body);color:var(--color-text-primary);font-style:italic;line-height:1.7;">“The pattern labels and instant portfolio updates made strategy debugging way easier than spreadsheets.”</p>
+            <div class="flex items-center gap-3">
+              <div class="avatar shrink-0" style="background:var(--color-accent);color:var(--color-text-inverse);">RJ</div>
+              <div><p style="font-family:var(--font-body);font-weight:600;color:var(--color-text-primary);">Rohan J.</p><p style="font-family:var(--font-body);color:var(--color-text-secondary);">Self-Learner</p></div>
+            </div>
+          </article>
+          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-muted);border:1px solid var(--color-border);">
+            <p class="mb-6" style="font-family:var(--font-body);color:var(--color-text-primary);font-style:italic;line-height:1.7;">“I use it in workshops so students can practice execution logic and measure risk under simulated market swings.”</p>
+            <div class="flex items-center gap-3">
+              <div class="avatar shrink-0" style="background:var(--color-secondary);color:var(--color-text-inverse);">MS</div>
+              <div><p style="font-family:var(--font-body);font-weight:600;color:var(--color-text-primary);">Meera S.</p><p style="font-family:var(--font-body);color:var(--color-text-secondary);">Trading Mentor</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact py-12 md:py-20" style="background:var(--color-bg-accent);">
+      <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-3xl md:text-5xl mb-4" style="font-family:var(--font-heading);font-weight:800;line-height:1.1;color:var(--color-text-primary);">Start your simulation workspace</h2>
+          <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Create your account to save watchlists, indicator setups, and strategy experiments across sessions and devices.</p>
+        </div>
+        <form class="card p-6 md:p-8" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
+          <div class="mb-4">
+            <label for="name" style="font-family:var(--font-body);color:var(--color-text-primary);">Full Name</label>
+            <input id="name" type="text" class="w-full mt-2 p-3" style="background:var(--color-bg-default);border:1px solid var(--color-border);border-radius:var(--radius-card);color:var(--color-text-primary);font-family:var(--font-body);" />
+          </div>
+          <div class="mb-4">
+            <label for="email" style="font-family:var(--font-body);color:var(--color-text-primary);">Email</label>
+            <input id="email" type="email" class="w-full mt-2 p-3" style="background:var(--color-bg-default);border:1px solid var(--color-border);border-radius:var(--radius-card);color:var(--color-text-primary);font-family:var(--font-body);" />
+          </div>
+          <div class="mb-6">
+            <label for="message" style="font-family:var(--font-body);color:var(--color-text-primary);">Learning Goal</label>
+            <textarea id="message" rows="4" class="w-full mt-2 p-3" style="background:var(--color-bg-default);border:1px solid var(--color-border);border-radius:var(--radius-card);color:var(--color-text-primary);font-family:var(--font-body);"></textarea>
+          </div>
+          <button type="submit" class="btn w-full md:w-auto" style="background:var(--color-primary);color:var(--color-text-inverse);padding:var(--button-padding);border-radius:var(--radius-button);">Get Early Access</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-16" style="background:var(--color-bg-dark);">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between gap-4">
+      <p style="font-family:var(--font-body);color:var(--color-text-inverse);">© 2026 groww application. Simulated markets for safer learning.</p>
+      <p style="font-family:var(--font-body);color:var(--color-text-inverse);">Secure auth • Persistent data • Real-time analytics</p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.querySelector('header');
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > 50) header.classList.add('scrolled');
+          else header.classList.remove('scrolled');
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+    menuBtn.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
+  </script>
+</body>
+</html>
