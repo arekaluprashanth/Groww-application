@@ -15,48 +15,6 @@
 
 ---
 
-## 📑 Comprehensive Table of Contents
-
-- [1. Executive Overview](#1-executive-overview)
-  - [1.1 Platform Vision](#11-platform-vision)
-  - [1.2 The Problem in Modern Financial Education](#12-the-problem-in-modern-financial-education)
-  - [1.3 The Groww Application Solution](#13-the-groww-application-solution)
-- [2. Live Production & Deployment Endpoints](#2-live-production--deployment-endpoints)
-  - [2.1 Primary URLs](#21-primary-urls)
-  - [2.2 Infrastructure & Edge Network](#22-infrastructure--edge-network)
-- [3. Core Architecture & Functional Modules](#3-core-architecture--functional-modules)
-  - [3.1 Multi-Asset Market Engine](#31-multi-asset-market-engine)
-    - [3.1.1 Equities & Indices](#311-equities--indices)
-    - [3.1.2 Fixed Income & Government Bonds](#312-fixed-income--government-bonds)
-    - [3.1.3 Cryptocurrencies & Digital Assets](#313-cryptocurrencies--digital-assets)
-  - [3.2 Technical Indicator & Analytics Suite](#32-technical-indicator--analytics-suite)
-    - [3.2.1 Trend & Momentum Indicators](#321-trend--momentum-indicators)
-    - [3.2.2 Volatility & Envelope Analysis](#322-volatility--envelope-analysis)
-    - [3.2.3 Volume & Oscillator Diagnostics](#323-volume--oscillator-diagnostics)
-  - [3.3 Quantitative Strategy Rules Engine](#33-quantitative-strategy-rules-engine)
-    - [3.3.1 Conditional Logic Builder](#331-conditional-logic-builder)
-    - [3.3.2 Backtesting & Scenario Stress-Testing](#332-backtesting--scenario-stress-testing)
-  - [3.4 Real-Time Portfolio & Risk Management Ledger](#34-real-time-portfolio--risk-management-ledger)
-    - [3.4.1 Live P&L and Mark-to-Market Accounting](#341-live-pl-and-mark-to-market-accounting)
-    - [3.4.2 Simulated Slippage and Transaction Overhead](#342-simulated-slippage-and-transaction-overhead)
-    - [3.4.3 Historical Execution Auditing](#343-historical-execution-auditing)
-- [4. User Journey & Workflow Architecture](#4-user-journey--workflow-architecture)
-  - [4.1 Stage 1: Market Onboarding & Workspace Initialization](#41-stage-1-market-onboarding--workspace-initialization)
-  - [4.2 Stage 2: Indicator Configuration & Signal Generation](#42-stage-2-indicator-configuration--signal-generation)
-  - [4.3 Stage 3: Simulated Execution & Trade Management](#43-stage-3-simulated-execution--trade-management)
-  - [4.4 Stage 4: Performance Attribution & Strategy Optimization](#44-stage-4-performance-attribution--strategy-optimization)
-- [5. Ultra-High Performance & 165Hz Engineering](#5-ultra-high-performance--165hz-engineering)
-  - [5.1 Zero-Dependency Native Architecture](#51-zero-dependency-native-architecture)
-  - [5.2 GPU Hardware Acceleration & Frame Pacing](#52-gpu-hardware-acceleration--frame-pacing)
-  - [5.3 Instant Vector Rendering (Zero External Asset Delays)](#53-instant-vector-rendering-zero-external-asset-delays)
-- [6. Security, Compliance & Persistence](#6-security-compliance--persistence)
-  - [6.1 Educational Sandboxing](#61-educational-sandboxing)
-  - [6.2 Session Management & Data Persistence](#62-session-management--data-persistence)
-- [7. Future Development Roadmap](#7-future-development-roadmap)
-- [8. Repository Ownership & Licensing](#8-repository-ownership--licensing)
-
----
-
 ## 1. Executive Overview
 
 ### 1.1 Platform Vision
