@@ -14,194 +14,349 @@
   <meta property="og:description" content="Practice stocks, bonds, and crypto with live simulated markets. Build strategies. Risk nothing." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://groww-application.vercel.app" />
-  <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#2563eb" />
 
-  <!-- Performance: DNS Prefetch -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-  <link rel="dns-prefetch" href="https://images.unsplash.com" />
+  <!-- Preconnect Fonts with immediate display swap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root{
-      --color-primary:#2563eb;--color-primary-light:#60a5fa;--color-primary-dark:#1d4ed8;--color-secondary:#0ea5e9;--color-accent:#6366f1;
-      --color-bg-default:#ffffff;--color-bg-dark:#0f172a;--color-bg-muted:#f1f5f9;--color-bg-accent:#eef2ff;
-      --color-text-primary:#0f172a;--color-text-secondary:#475569;--color-text-inverse:#f8fafc;--color-border:#cbd5e1;
-      --font-heading:"Space Grotesk",sans-serif;--font-body:"Inter",sans-serif;
-      --gradient-hero:linear-gradient(135deg,var(--color-primary),var(--color-accent));--gradient-cta:linear-gradient(90deg,var(--color-primary-dark),var(--color-secondary));
-      --shadow-card:0 8px 24px rgba(15,23,42,0.08);--shadow-card-hover:0 16px 40px rgba(15,23,42,0.14);
-      --radius-card:18px;--radius-button:12px;--button-padding:0.75rem 1.2rem;--section-py:5rem;--section-py-lg:7rem;
+    /* CSS Reset & 165Hz Hardware Acceleration */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+    :root {
+      --color-primary: #2563eb;
+      --color-primary-light: #60a5fa;
+      --color-primary-dark: #1d4ed8;
+      --color-secondary: #0ea5e9;
+      --color-accent: #6366f1;
+      --color-groww-green: #00d09c;
+      --color-bg-default: #ffffff;
+      --color-bg-dark: #0f172a;
+      --color-bg-muted: #f8fafc;
+      --color-bg-accent: #eef2ff;
+      --color-text-primary: #0f172a;
+      --color-text-secondary: #475569;
+      --color-text-inverse: #f8fafc;
+      --color-border: #e2e8f0;
+      --font-heading: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --gradient-hero: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #6366f1 100%);
+      --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+      --shadow-card-hover: 0 12px 30px -4px rgba(15, 23, 42, 0.12);
+      --radius-card: 18px;
+      --radius-button: 12px;
     }
-    *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
-    html{scroll-behavior:smooth}
-    body{font-family:var(--font-body);color:var(--color-text-primary);background:var(--color-bg-default);overflow-x:hidden}
-    header{transition:background .15s ease,box-shadow .15s ease,border-color .15s ease;border-bottom:1px solid transparent;will-change:background,box-shadow}
-    header.scrolled{background:var(--color-bg-default);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-card)}
-    .btn{padding:var(--button-padding);border-radius:var(--radius-button);transition:transform .12s cubic-bezier(.4,0,.2,1),box-shadow .12s cubic-bezier(.4,0,.2,1);display:inline-flex;justify-content:center;align-items:center;font-family:var(--font-body);font-weight:600;will-change:transform}
-    .btn:hover{transform:translateY(-2px) translateZ(0);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
-    .btn:active{transform:translateY(0) translateZ(0);transition-duration:.06s}
-    .card{border-radius:var(--radius-card);box-shadow:var(--shadow-card);transition:transform .12s cubic-bezier(.4,0,.2,1),box-shadow .12s cubic-bezier(.4,0,.2,1);will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-    .card:hover{transform:translateY(-2px) translateZ(0);box-shadow:var(--shadow-card-hover)}
-    .animate-in{animation:fadeSlideIn .5s cubic-bezier(.4,0,.2,1) forwards;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-    .animate-in:nth-child(2){animation-delay:.08s}.animate-in:nth-child(3){animation-delay:.16s}.animate-in:nth-child(4){animation-delay:.24s}
-    @keyframes fadeSlideIn{from{opacity:0;transform:translate3d(0,20px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
-    .avatar{width:3rem;height:3rem;border-radius:50%;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-accent)}
-    section:not(.hero){content-visibility:auto;contain-intrinsic-size:auto 600px}
-    img{transform:translateZ(0)}
+    
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--color-text-primary); background: var(--color-bg-default); overflow-x: hidden; line-height: 1.5; }
+    
+    /* Layout Helpers (Zero dependency standalone CSS) */
+    .container { width: 100%; max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .flex { display: flex; }
+    .inline-flex { display: inline-flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-8 { gap: 2rem; }
+    .grid { display: grid; }
+    .w-full { width: 100%; }
+    .hidden { display: none; }
+    
+    /* Responsive Grid */
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    @media (min-width: 768px) {
+      .md\:flex { display: flex; }
+      .md\:hidden { display: none; }
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .md\:flex-row { flex-direction: row; }
+      .md\:w-auto { width: auto; }
+      .container { padding-left: 2rem; padding-right: 2rem; }
+    }
+    @media (min-width: 1024px) {
+      .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    /* Header & Navigation */
+    header { position: sticky; top: 0; z-index: 50; padding: 0.85rem 0; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); transition: background 0.15s ease, box-shadow 0.15s ease; will-change: background, box-shadow; }
+    header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .brand-logo { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-heading); color: var(--color-primary); font-weight: 800; font-size: 1.35rem; text-decoration: none; letter-spacing: -0.02em; transform: translateZ(0); }
+    .nav-link { color: var(--color-text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.15s ease; padding: 0.4rem 0.6rem; border-radius: 8px; }
+    .nav-link:hover { color: var(--color-primary); }
+
+    /* Fast & Smooth Buttons (165Hz Optimized) */
+    .btn { display: inline-flex; justify-content: center; align-items: center; padding: 0.75rem 1.4rem; border-radius: var(--radius-button); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer; border: none; transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.12s cubic-bezier(0.4, 0, 0.2, 1), background 0.12s ease; will-change: transform; transform: translate3d(0, 0, 0); }
+    .btn:hover { transform: translate3d(0, -2px, 0); box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2); }
+    .btn:active { transform: translate3d(0, 0, 0); transition-duration: 0.05s; }
+    .btn-primary { background: var(--color-primary); color: var(--color-text-inverse); }
+    .btn-primary:hover { background: var(--color-primary-dark); }
+    .btn-white { background: #ffffff; color: var(--color-primary); }
+    .btn-white:hover { background: #f8fafc; }
+    .btn-outline-white { border: 2px solid rgba(255,255,255,0.8); color: #ffffff; background: transparent; }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: #ffffff; }
+
+    /* Interactive Cards */
+    .card { background: #ffffff; border-radius: var(--radius-card); border: 1px solid var(--color-border); padding: 1.75rem; box-shadow: var(--shadow-card); transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; transform: translate3d(0, 0, 0); backface-visibility: hidden; }
+    .card:hover { transform: translate3d(0, -4px, 0); box-shadow: var(--shadow-card-hover); }
+
+    /* Hero Section */
+    .hero { padding: 4.5rem 0 5rem; background: var(--gradient-hero); color: #ffffff; position: relative; overflow: hidden; }
+    .hero-badge { display: inline-block; background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); color: #ffffff; padding: 0.35rem 1rem; border-radius: 999px; font-weight: 600; font-size: 0.85rem; margin-bottom: 1.25rem; border: 1px solid rgba(255, 255, 255, 0.25); }
+    .hero-title { font-family: var(--font-heading); font-weight: 800; font-size: clamp(2.25rem, 5vw, 4.25rem); line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
+    .hero-desc { font-size: 1.1rem; line-height: 1.7; opacity: 0.92; max-width: 540px; margin-bottom: 2rem; }
+
+    /* Trading Chart Mockup (Pure Instant SVG & CSS - Zero external load delay) */
+    .dashboard-preview { background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-card); padding: 1.25rem; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5); transform: translate3d(0, 0, 0); }
+    .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem; }
+    .chart-pill { background: rgba(0, 208, 156, 0.15); color: #00d09c; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 6px; border: 1px solid rgba(0, 208, 156, 0.3); display: inline-flex; align-items: center; gap: 0.3rem; }
+    .pulse-dot { width: 6px; height: 6px; background: #00d09c; border-radius: 50%; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } }
+
+    /* Form Styling */
+    .input-control { width: 100%; margin-top: 0.4rem; padding: 0.8rem 1rem; border: 1px solid var(--color-border); border-radius: 10px; font-family: var(--font-body); font-size: 0.95rem; color: var(--color-text-primary); transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+    .input-control:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+
+    /* Avatar */
+    .avatar { width: 2.75rem; height: 2.75rem; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: #ffffff; }
+
+    /* Typography */
+    .section-title { font-family: var(--font-heading); font-weight: 800; font-size: clamp(1.85rem, 3.5vw, 2.75rem); letter-spacing: -0.02em; line-height: 1.15; color: var(--color-text-primary); margin-bottom: 0.75rem; }
+    .section-subtitle { color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; max-width: 680px; margin-bottom: 2.5rem; }
   </style>
 </head>
 <body>
-  <header class="sticky top-0 z-50 py-3" style="background: color-mix(in srgb, var(--color-bg-default) 85%, transparent); backdrop-filter: blur(15px);">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2" style="font-family:var(--font-heading);color:var(--color-primary);font-weight:800;letter-spacing:-0.02em;font-size:1.25rem;text-decoration:none;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d09c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>Groww Application</a>
-      <button id="menuBtn" class="md:hidden" aria-label="Toggle menu" style="color:var(--color-text-primary);font-family:var(--font-body);">☰</button>
-      <nav id="navMenu" class="hidden md:flex items-center gap-6">
-        <a href="#features" style="color:var(--color-text-primary);font-family:var(--font-body);">Features</a>
-        <a href="#testimonials" style="color:var(--color-text-primary);font-family:var(--font-body);">Learner Stories</a>
-        <a href="#contact" style="color:var(--color-text-primary);font-family:var(--font-body);">Contact</a>
-        <a href="#contact" class="btn" style="align-self:center;background:var(--color-primary);color:var(--color-text-inverse);padding:0.5rem 1rem;border-radius:var(--radius-button);">Start Simulating</a>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="container flex items-center justify-between">
+      <a href="#" class="brand-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d09c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+          <polyline points="16 7 22 7 22 13"></polyline>
+        </svg>
+        <span>Groww Application</span>
+      </a>
+
+      <button id="menuBtn" class="btn md:hidden" aria-label="Toggle menu" style="padding: 0.5rem 0.8rem; background: var(--color-bg-muted); color: var(--color-text-primary);">☰</button>
+
+      <nav class="hidden md:flex items-center gap-4">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#testimonials" class="nav-link">Learner Stories</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#contact" class="btn btn-primary" style="padding: 0.55rem 1.1rem; font-size: 0.9rem;">Start Simulating</a>
       </nav>
     </div>
-    <nav id="mobileNav" class="hidden md:hidden px-4 pb-3">
+
+    <!-- Mobile Dropdown -->
+    <nav id="mobileNav" class="hidden md:hidden container" style="padding-top: 0.75rem;">
       <div class="flex flex-col gap-2">
-        <a href="#features" class="btn w-full" style="background:var(--color-bg-muted);color:var(--color-text-primary);padding:var(--button-padding);border-radius:var(--radius-button);">Features</a>
-        <a href="#testimonials" class="btn w-full" style="background:var(--color-bg-muted);color:var(--color-text-primary);padding:var(--button-padding);border-radius:var(--radius-button);">Learner Stories</a>
-        <a href="#contact" class="btn w-full" style="background:var(--color-primary);color:var(--color-text-inverse);padding:var(--button-padding);border-radius:var(--radius-button);">Start Simulating</a>
+        <a href="#features" class="btn" style="background: var(--color-bg-muted); color: var(--color-text-primary); width: 100%;">Features</a>
+        <a href="#testimonials" class="btn" style="background: var(--color-bg-muted); color: var(--color-text-primary); width: 100%;">Learner Stories</a>
+        <a href="#contact" class="btn btn-primary" style="width: 100%;">Start Simulating</a>
       </div>
     </nav>
   </header>
 
   <main>
-    <section class="hero pt-24 py-12 md:py-20" style="background:var(--gradient-hero);">
-      <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
-        <div class="order-1">
-          <span class="inline-block mb-4" style="background:var(--color-bg-default);color:var(--color-primary);padding:.3rem .8rem;border-radius:999px;font-family:var(--font-body);font-weight:600;">Financial Education Platform</span>
-          <h1 class="text-3xl md:text-5xl lg:text-7xl" style="font-family:var(--font-heading);font-weight:800;line-height:1.08;letter-spacing:-0.03em;color:var(--color-text-inverse);">Trade smarter.<br/>Learn faster.<br/>Risk nothing.</h1>
-          <p class="mt-6 text-base md:text-lg" style="font-family:var(--font-body);color:var(--color-text-inverse);line-height:1.7;">Practice stocks, bonds, and crypto with live simulated markets, build indicator-based strategies, and instantly see portfolio P/L and analytics update in real time.</p>
-          <div class="mt-8 flex flex-col md:flex-row gap-3 md:gap-4">
-            <a href="#contact" class="btn w-full md:w-auto" style="background:var(--color-bg-default);color:var(--color-primary);padding:var(--button-padding);border-radius:var(--radius-button);">Create Free Account</a>
-            <a href="#features" class="btn w-full md:w-auto" style="border:2px solid var(--color-text-inverse);color:var(--color-text-inverse);padding:var(--button-padding);border-radius:var(--radius-button);">Explore Features</a>
-          </div>
-        </div>
-        <div class="order-2">
-          <div class="p-3 md:p-4" style="background:rgba(15,23,42,0.45);border:1px solid rgba(248,250,252,0.2);border-radius:var(--radius-card);">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=720&fit=crop&q=60&fm=webp" alt="Analytics dashboard on trading screen" class="w-full max-w-full" style="border-radius:16px;" loading="eager" decoding="async" fetchpriority="high">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="features py-12 md:py-20" style="background:var(--color-bg-muted);">
-      <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <h2 class="text-3xl md:text-5xl mb-4" style="font-family:var(--font-heading);font-weight:800;line-height:1.1;letter-spacing:-0.02em;color:var(--color-text-primary);">Built for simulated execution and deep strategy learning</h2>
-        <p class="max-w-3xl mb-10" style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Everything from multi-asset charting to pattern recognition is connected, so users can test, refine, and understand decisions with confidence.</p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
-            <h3 class="text-xl mb-3" style="font-family:var(--font-heading);font-weight:700;color:var(--color-text-primary);">Multi-Asset Comparison</h3>
-            <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Track stocks, bonds, and crypto in one synced workspace with overlay comparison and responsive chart controls.</p>
-          </article>
-          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
-            <h3 class="text-xl mb-3" style="font-family:var(--font-heading);font-weight:700;color:var(--color-text-primary);">Custom Indicators</h3>
-            <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Configure Bollinger Bands, moving averages, RSI, and volatility metrics with user-defined parameters.</p>
-          </article>
-          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
-            <h3 class="text-xl mb-3" style="font-family:var(--font-heading);font-weight:700;color:var(--color-text-primary);">Strategy Rules Engine</h3>
-            <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Create simple buy/sell logic, run scenarios against simulated conditions, and inspect execution outcomes instantly.</p>
-          </article>
-          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
-            <h3 class="text-xl mb-3" style="font-family:var(--font-heading);font-weight:700;color:var(--color-text-primary);">Live Portfolio Feedback</h3>
-            <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">See P/L shifts, transaction costs, and historical trade logs update as you simulate every decision.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="testimonials" class="testimonials py-12 md:py-20" style="background:var(--color-bg-default);">
-      <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <p class="text-7xl md:text-8xl mb-4" style="font-family:var(--font-heading);font-weight:800;line-height:1;color:var(--color-primary);">98%</p>
-        <h2 class="text-3xl md:text-5xl mb-10" style="font-family:var(--font-heading);font-weight:800;line-height:1.1;color:var(--color-text-primary);">of active learners report better trading confidence</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-muted);border:1px solid var(--color-border);">
-            <p class="mb-6" style="font-family:var(--font-body);color:var(--color-text-primary);font-style:italic;line-height:1.7;">“I finally understood how moving averages and RSI work together because I could test rules without risking money.”</p>
-            <div class="flex items-center gap-3">
-              <div class="avatar shrink-0" style="background:var(--color-primary);color:var(--color-text-inverse);">AK</div>
-              <div><p style="font-family:var(--font-body);font-weight:600;color:var(--color-text-primary);">Ananya K.</p><p style="font-family:var(--font-body);color:var(--color-text-secondary);">Finance Student</p></div>
-            </div>
-          </article>
-          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-muted);border:1px solid var(--color-border);">
-            <p class="mb-6" style="font-family:var(--font-body);color:var(--color-text-primary);font-style:italic;line-height:1.7;">“The pattern labels and instant portfolio updates made strategy debugging way easier than spreadsheets.”</p>
-            <div class="flex items-center gap-3">
-              <div class="avatar shrink-0" style="background:var(--color-accent);color:var(--color-text-inverse);">RJ</div>
-              <div><p style="font-family:var(--font-body);font-weight:600;color:var(--color-text-primary);">Rohan J.</p><p style="font-family:var(--font-body);color:var(--color-text-secondary);">Self-Learner</p></div>
-            </div>
-          </article>
-          <article class="card animate-in p-6 h-full" style="background:var(--color-bg-muted);border:1px solid var(--color-border);">
-            <p class="mb-6" style="font-family:var(--font-body);color:var(--color-text-primary);font-style:italic;line-height:1.7;">“I use it in workshops so students can practice execution logic and measure risk under simulated market swings.”</p>
-            <div class="flex items-center gap-3">
-              <div class="avatar shrink-0" style="background:var(--color-secondary);color:var(--color-text-inverse);">MS</div>
-              <div><p style="font-family:var(--font-body);font-weight:600;color:var(--color-text-primary);">Meera S.</p><p style="font-family:var(--font-body);color:var(--color-text-secondary);">Trading Mentor</p></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact py-12 md:py-20" style="background:var(--color-bg-accent);">
-      <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
-          <h2 class="text-3xl md:text-5xl mb-4" style="font-family:var(--font-heading);font-weight:800;line-height:1.1;color:var(--color-text-primary);">Start your simulation workspace</h2>
-          <p style="font-family:var(--font-body);color:var(--color-text-secondary);line-height:1.7;">Create your account to save watchlists, indicator setups, and strategy experiments across sessions and devices.</p>
+          <span class="hero-badge">⚡ Real-Time Financial Simulator</span>
+          <h1 class="hero-title">Trade smarter.<br/>Learn faster.<br/>Risk nothing.</h1>
+          <p class="hero-desc">Practice stocks, bonds, and crypto with live simulated markets, build indicator-based strategies, and instantly see portfolio P/L and analytics update in real time.</p>
+          <div class="flex flex-col md:flex-row gap-3">
+            <a href="#contact" class="btn btn-white w-full md:w-auto">Create Free Account</a>
+            <a href="#features" class="btn btn-outline-white w-full md:w-auto">Explore Features</a>
+          </div>
         </div>
-        <form class="card p-6 md:p-8" style="background:var(--color-bg-default);border:1px solid var(--color-border);">
-          <div class="mb-4">
-            <label for="name" style="font-family:var(--font-body);color:var(--color-text-primary);">Full Name</label>
-            <input id="name" type="text" class="w-full mt-2 p-3" style="background:var(--color-bg-default);border:1px solid var(--color-border);border-radius:var(--radius-card);color:var(--color-text-primary);font-family:var(--font-body);" />
+
+        <div>
+          <!-- High Performance Vector Dashboard Preview -->
+          <div class="dashboard-preview">
+            <div class="chart-header">
+              <div class="flex items-center gap-2">
+                <span style="font-weight: 700; color: #f8fafc; font-size: 1rem;">NIFTY 50 • SIM</span>
+                <span class="chart-pill"><span class="pulse-dot"></span> LIVE +2.48%</span>
+              </div>
+              <span style="color: #94a3b8; font-size: 0.85rem; font-family: monospace;">24,842.60</span>
+            </div>
+
+            <!-- Crisp Vector Trading Wave Chart -->
+            <svg viewBox="0 0 500 220" width="100%" height="auto" style="display: block; overflow: visible;">
+              <defs>
+                <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#00d09c" stop-opacity="0.35" />
+                  <stop offset="100%" stop-color="#00d09c" stop-opacity="0.0" />
+                </linearGradient>
+              </defs>
+              <!-- Grid lines -->
+              <line x1="0" y1="40" x2="500" y2="40" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4" />
+              <line x1="0" y1="90" x2="500" y2="90" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4" />
+              <line x1="0" y1="140" x2="500" y2="140" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4" />
+              <line x1="0" y1="190" x2="500" y2="190" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4" />
+              
+              <!-- Gradient Fill Area -->
+              <path d="M0,160 Q80,120 150,140 T300,70 T420,50 T500,30 L500,210 L0,210 Z" fill="url(#chartGrad)" />
+              
+              <!-- Neon Trend Line -->
+              <path d="M0,160 Q80,120 150,140 T300,70 T420,50 T500,30" fill="none" stroke="#00d09c" stroke-width="3" stroke-linecap="round" />
+              
+              <!-- Indicator Signal Dot -->
+              <circle cx="420" cy="50" r="5" fill="#00d09c" />
+              <circle cx="420" cy="50" r="10" fill="none" stroke="#00d09c" stroke-opacity="0.4" />
+            </svg>
+
+            <div class="flex justify-between items-center" style="margin-top: 0.75rem; font-size: 0.75rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.75rem;">
+              <span>RSI (14): <strong style="color: #00d09c;">64.2</strong></span>
+              <span>MACD: <strong style="color: #60a5fa;">BULLISH CROSS</strong></span>
+              <span>SMA (50/200): <strong style="color: #f8fafc;">GOLDEN</strong></span>
+            </div>
           </div>
-          <div class="mb-4">
-            <label for="email" style="font-family:var(--font-body);color:var(--color-text-primary);">Email</label>
-            <input id="email" type="email" class="w-full mt-2 p-3" style="background:var(--color-bg-default);border:1px solid var(--color-border);border-radius:var(--radius-card);color:var(--color-text-primary);font-family:var(--font-body);" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" style="padding: 5rem 0; background: var(--color-bg-muted);">
+      <div class="container">
+        <h2 class="section-title">Built for simulated execution and deep strategy learning</h2>
+        <p class="section-subtitle">Everything from multi-asset charting to pattern recognition is connected, so users can test, refine, and understand decisions with confidence.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <article class="card">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">📊</div>
+            <h3 style="font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem;">Multi-Asset Comparison</h3>
+            <p style="color: var(--color-text-secondary); font-size: 0.92rem; line-height: 1.6;">Track stocks, bonds, and crypto in one synced workspace with overlay comparison and responsive chart controls.</p>
+          </article>
+
+          <article class="card">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">📈</div>
+            <h3 style="font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem;">Custom Indicators</h3>
+            <p style="color: var(--color-text-secondary); font-size: 0.92rem; line-height: 1.6;">Configure Bollinger Bands, moving averages, RSI, and volatility metrics with user-defined parameters.</p>
+          </article>
+
+          <article class="card">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">⚙️</div>
+            <h3 style="font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem;">Strategy Rules Engine</h3>
+            <p style="color: var(--color-text-secondary); font-size: 0.92rem; line-height: 1.6;">Create simple buy/sell logic, run scenarios against simulated conditions, and inspect execution outcomes instantly.</p>
+          </article>
+
+          <article class="card">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">💼</div>
+            <h3 style="font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem;">Live Portfolio Feedback</h3>
+            <p style="color: var(--color-text-secondary); font-size: 0.92rem; line-height: 1.6;">See P/L shifts, transaction costs, and historical trade logs update as you simulate every decision.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" style="padding: 5rem 0; background: #ffffff;">
+      <div class="container">
+        <p style="font-family: var(--font-heading); font-weight: 800; font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1; color: var(--color-primary); margin-bottom: 0.5rem;">98%</p>
+        <h2 class="section-title" style="margin-bottom: 2.5rem;">of active learners report better trading confidence</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="card" style="background: var(--color-bg-muted);">
+            <p style="color: var(--color-text-primary); font-style: italic; line-height: 1.65; margin-bottom: 1.5rem;">“I finally understood how moving averages and RSI work together because I could test rules without risking money.”</p>
+            <div class="flex items-center gap-3">
+              <div class="avatar" style="background: var(--color-primary);">AK</div>
+              <div>
+                <p style="font-weight: 600; color: var(--color-text-primary); font-size: 0.95rem;">Ananya K.</p>
+                <p style="color: var(--color-text-secondary); font-size: 0.85rem;">Finance Student</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" style="background: var(--color-bg-muted);">
+            <p style="color: var(--color-text-primary); font-style: italic; line-height: 1.65; margin-bottom: 1.5rem;">“The pattern labels and instant portfolio updates made strategy debugging way easier than spreadsheets.”</p>
+            <div class="flex items-center gap-3">
+              <div class="avatar" style="background: var(--color-accent);">RJ</div>
+              <div>
+                <p style="font-weight: 600; color: var(--color-text-primary); font-size: 0.95rem;">Rohan J.</p>
+                <p style="color: var(--color-text-secondary); font-size: 0.85rem;">Self-Learner</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" style="background: var(--color-bg-muted);">
+            <p style="color: var(--color-text-primary); font-style: italic; line-height: 1.65; margin-bottom: 1.5rem;">“I use it in workshops so students can practice execution logic and measure risk under simulated market swings.”</p>
+            <div class="flex items-center gap-3">
+              <div class="avatar" style="background: var(--color-secondary);">MS</div>
+              <div>
+                <p style="font-weight: 600; color: var(--color-text-primary); font-size: 0.95rem;">Meera S.</p>
+                <p style="color: var(--color-text-secondary); font-size: 0.85rem;">Trading Mentor</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Simulation Signup -->
+    <section id="contact" style="padding: 5rem 0; background: var(--color-bg-accent);">
+      <div class="container grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="section-title">Start your simulation workspace</h2>
+          <p style="color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.65;">Create your free account to save watchlists, indicator setups, and strategy experiments across sessions and devices.</p>
+        </div>
+
+        <form class="card" style="background: #ffffff; padding: 2rem;" onsubmit="event.preventDefault(); alert('Welcome to Groww Application! Your simulated workspace is ready.');">
+          <div style="margin-bottom: 1rem;">
+            <label for="name" style="font-weight: 600; font-size: 0.9rem; color: var(--color-text-primary);">Full Name</label>
+            <input id="name" type="text" required placeholder="e.g. Rahul Sharma" class="input-control" />
           </div>
-          <div class="mb-6">
-            <label for="message" style="font-family:var(--font-body);color:var(--color-text-primary);">Learning Goal</label>
-            <textarea id="message" rows="4" class="w-full mt-2 p-3" style="background:var(--color-bg-default);border:1px solid var(--color-border);border-radius:var(--radius-card);color:var(--color-text-primary);font-family:var(--font-body);"></textarea>
+
+          <div style="margin-bottom: 1rem;">
+            <label for="email" style="font-weight: 600; font-size: 0.9rem; color: var(--color-text-primary);">Email Address</label>
+            <input id="email" type="email" required placeholder="name@example.com" class="input-control" />
           </div>
-          <button type="submit" class="btn w-full md:w-auto" style="background:var(--color-primary);color:var(--color-text-inverse);padding:var(--button-padding);border-radius:var(--radius-button);">Get Early Access</button>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label for="goal" style="font-weight: 600; font-size: 0.9rem; color: var(--color-text-primary);">Learning Goal</label>
+            <textarea id="goal" rows="3" placeholder="What strategies do you want to practice?" class="input-control"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-full" style="padding: 0.85rem 1.5rem; font-size: 1rem;">Get Instant Access</button>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="py-16" style="background:var(--color-bg-dark);">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between gap-4">
-      <p style="font-family:var(--font-body);color:var(--color-text-inverse);">© 2026 Groww Application. Simulated markets for safer learning.</p>
-      <p style="font-family:var(--font-body);color:var(--color-text-inverse);">Secure auth • Persistent data • Real-time analytics</p>
+  <!-- Footer -->
+  <footer style="padding: 3rem 0; background: var(--color-bg-dark); color: var(--color-text-inverse);">
+    <div class="container flex flex-col md:flex-row justify-between gap-4" style="font-size: 0.9rem; opacity: 0.85;">
+      <p>© 2026 Groww Application. Simulated markets for safer learning.</p>
+      <p>Secure auth • Persistent data • Real-time analytics</p>
     </div>
   </footer>
 
   <script>
+    // Header scroll state handling (Instant 165Hz animation loop)
     const header = document.querySelector('header');
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
-    let ticking = false;
-    function onScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (window.scrollY > 50) header.classList.add('scrolled');
-          else header.classList.remove('scrolled');
-          ticking = false;
-        });
-        ticking = true;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
       }
+    }, { passive: true });
+
+    if (menuBtn && mobileNav) {
+      menuBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('hidden');
+      });
     }
-    window.addEventListener('scroll', onScroll);
-    menuBtn.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
   </script>
 </body>
 </html>
