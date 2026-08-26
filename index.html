@@ -39,24 +39,28 @@
       --shadow-card:0 8px 24px rgba(15,23,42,0.08);--shadow-card-hover:0 16px 40px rgba(15,23,42,0.14);
       --radius-card:18px;--radius-button:12px;--button-padding:0.75rem 1.2rem;--section-py:5rem;--section-py-lg:7rem;
     }
+    *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
     html{scroll-behavior:smooth}
-    body{font-family:var(--font-body);color:var(--color-text-primary);background:var(--color-bg-default)}
-    header{transition:background .3s ease,box-shadow .3s ease,border-color .3s ease;border-bottom:1px solid transparent}
+    body{font-family:var(--font-body);color:var(--color-text-primary);background:var(--color-bg-default);overflow-x:hidden}
+    header{transition:background .15s ease,box-shadow .15s ease,border-color .15s ease;border-bottom:1px solid transparent;will-change:background,box-shadow}
     header.scrolled{background:var(--color-bg-default);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-card)}
-    .btn{padding:var(--button-padding);border-radius:var(--radius-button);transition:.2s ease;display:inline-flex;justify-content:center;align-items:center;font-family:var(--font-body);font-weight:600}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
-    .card{border-radius:var(--radius-card);box-shadow:var(--shadow-card);transition:.2s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-card-hover)}
-    .animate-in{animation:fadeSlideIn .6s ease forwards}
-    .animate-in:nth-child(2){animation-delay:.1s}.animate-in:nth-child(3){animation-delay:.2s}.animate-in:nth-child(4){animation-delay:.3s}
-    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .btn{padding:var(--button-padding);border-radius:var(--radius-button);transition:transform .12s cubic-bezier(.4,0,.2,1),box-shadow .12s cubic-bezier(.4,0,.2,1);display:inline-flex;justify-content:center;align-items:center;font-family:var(--font-body);font-weight:600;will-change:transform}
+    .btn:hover{transform:translateY(-2px) translateZ(0);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+    .btn:active{transform:translateY(0) translateZ(0);transition-duration:.06s}
+    .card{border-radius:var(--radius-card);box-shadow:var(--shadow-card);transition:transform .12s cubic-bezier(.4,0,.2,1),box-shadow .12s cubic-bezier(.4,0,.2,1);will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .card:hover{transform:translateY(-2px) translateZ(0);box-shadow:var(--shadow-card-hover)}
+    .animate-in{animation:fadeSlideIn .5s cubic-bezier(.4,0,.2,1) forwards;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .animate-in:nth-child(2){animation-delay:.08s}.animate-in:nth-child(3){animation-delay:.16s}.animate-in:nth-child(4){animation-delay:.24s}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translate3d(0,20px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
     .avatar{width:3rem;height:3rem;border-radius:50%;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-accent)}
+    section:not(.hero){content-visibility:auto;contain-intrinsic-size:auto 600px}
+    img{transform:translateZ(0)}
   </style>
 </head>
 <body>
   <header class="sticky top-0 z-50 py-3" style="background: color-mix(in srgb, var(--color-bg-default) 85%, transparent); backdrop-filter: blur(15px);">
     <div class="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
-      <a href="#" style="font-family:var(--font-heading);color:var(--color-primary);font-weight:800;letter-spacing:-0.02em;">groww application</a>
+      <a href="#" class="flex items-center gap-2" style="font-family:var(--font-heading);color:var(--color-primary);font-weight:800;letter-spacing:-0.02em;font-size:1.25rem;text-decoration:none;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d09c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>Groww Application</a>
       <button id="menuBtn" class="md:hidden" aria-label="Toggle menu" style="color:var(--color-text-primary);font-family:var(--font-body);">☰</button>
       <nav id="navMenu" class="hidden md:flex items-center gap-6">
         <a href="#features" style="color:var(--color-text-primary);font-family:var(--font-body);">Features</a>
@@ -88,7 +92,7 @@
         </div>
         <div class="order-2">
           <div class="p-3 md:p-4" style="background:rgba(15,23,42,0.45);border:1px solid rgba(248,250,252,0.2);border-radius:var(--radius-card);">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1080&fit=crop&q=80" alt="Analytics dashboard on trading screen" class="w-full max-w-full" style="border-radius:16px;" loading="lazy" decoding="async">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=720&fit=crop&q=60&fm=webp" alt="Analytics dashboard on trading screen" class="w-full max-w-full" style="border-radius:16px;" loading="eager" decoding="async" fetchpriority="high">
           </div>
         </div>
       </div>
@@ -176,7 +180,7 @@
 
   <footer class="py-16" style="background:var(--color-bg-dark);">
     <div class="max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between gap-4">
-      <p style="font-family:var(--font-body);color:var(--color-text-inverse);">© 2026 groww application. Simulated markets for safer learning.</p>
+      <p style="font-family:var(--font-body);color:var(--color-text-inverse);">© 2026 Groww Application. Simulated markets for safer learning.</p>
       <p style="font-family:var(--font-body);color:var(--color-text-inverse);">Secure auth • Persistent data • Real-time analytics</p>
     </div>
   </footer>
