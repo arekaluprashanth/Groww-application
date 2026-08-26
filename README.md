@@ -2,11 +2,6 @@
 
 <div align="center">
 
-[![Production Status](https://img.shields.io/badge/Production-Live%20%26%20Active-00d09c?style=for-the-badge&logo=vercel&logoColor=white)](https://groww-application.vercel.app)
-[![Deployment](https://img.shields.io/badge/Deployment-Vercel%20Edge%20Network-black?style=for-the-badge&logo=vercel)](https://groww-application.vercel.app)
-[![Performance](https://img.shields.io/badge/Speed-165Hz%20Ultra%20Smooth-2563eb?style=for-the-badge&logo=speedtest&logoColor=white)](https://groww-application.vercel.app)
-[![License](https://img.shields.io/badge/License-MIT-6366f1?style=for-the-badge)](LICENSE)
-
 ### 🌐 [**LAUNCH LIVE APPLICATION → https://groww-application.vercel.app**](https://groww-application.vercel.app)
 
 **A professional-grade, zero-risk financial market simulator engineered for students, algorithmic traders, and market enthusiasts.**
