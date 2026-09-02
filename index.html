@@ -52,7 +52,7 @@
     body { font-family: var(--font-body); color: var(--color-text-primary); background: var(--color-bg-default); overflow-x: hidden; line-height: 1.5; min-height: 100%; min-height: 100dvh; width: 100%; }
     
     /* Layout Helpers (Zero dependency standalone CSS) */
-    .container { width: 100%; max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .container { width: 100%; max-width: 100%; margin-left: auto; margin-right: auto; padding-left: 2rem; padding-right: 2rem; }
     .flex { display: flex; }
     .inline-flex { display: inline-flex; }
     .flex-col { flex-direction: column; }
@@ -136,13 +136,12 @@
     .section-title { font-family: var(--font-heading); font-weight: 800; font-size: clamp(1.85rem, 3.5vw, 2.75rem); letter-spacing: -0.02em; line-height: 1.15; color: var(--color-text-primary); margin-bottom: 0.75rem; }
     .section-subtitle { color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6; max-width: 680px; margin-bottom: 2.5rem; }
 
-    /* Full-Width Sections on All Devices */
-    section { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; }
-    section > .container { max-width: 1280px; margin: 0 auto; }
-
+    /* Full-Width Sections */
+    section { width: 100%; display: flex; flex-direction: column; justify-content: center; }
+    
     /* Small Phone Screens (320px - 480px) */
     @media (max-width: 480px) {
-      .container { padding-left: 1rem; padding-right: 1rem; }
+      .container { padding-left: 1.25rem; padding-right: 1.25rem; }
       .card { padding: 1.25rem; }
       .brand-logo span { font-size: 1.1rem; }
       .dashboard-preview { padding: 0.85rem; }
