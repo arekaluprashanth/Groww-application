@@ -1,4 +1,4 @@
-# 📈 Groww Application — Simulated Multi-Asset Trading & Quantitative Strategy Learning Platform
+﻿# 📈 Groww Application — Simulated Multi-Asset Trading & Quantitative Strategy Learning Platform
 
 <div align="center">
 
@@ -214,3 +214,4 @@ Groww Application solves these challenges by combining:
 *Crafted with precision for next-generation traders and market learners.*
 
 </div>
+
